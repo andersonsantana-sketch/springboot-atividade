@@ -1,9 +1,12 @@
 package com.example.atividade.models;
 
+import java.util.List;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 
 @Entity
 public class Evento {
@@ -13,9 +16,15 @@ public class Evento {
     private Long id;
 
     private String nome;
+
     private String local;
+
     private String data;
+
     private String horario;
+
+    @OneToMany(mappedBy = "evento")
+    private List<Convidado> convidados;
 
     public Long getId() {
         return id;
@@ -55,5 +64,13 @@ public class Evento {
 
     public void setHorario(String horario) {
         this.horario = horario;
+    }
+
+    public List<Convidado> getConvidados() {
+        return convidados;
+    }
+
+    public void setConvidados(List<Convidado> convidados) {
+        this.convidados = convidados;
     }
 }

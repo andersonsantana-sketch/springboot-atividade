@@ -52,6 +52,26 @@
             </div>
         </div>
 
+        <h4>Convidados</h4>
+
+        <table class="highlight">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nome</th>
+                    <th>RG</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr th:each="convidado : ${convidados}">
+                    <td th:text="${convidado.id}"></td>
+                    <td th:text="${convidado.nome}"></td>
+                    <td th:text="${convidado.rg}"></td>
+                </tr>
+            </tbody>
+        </table>
+
     </div>
 
 </body>
