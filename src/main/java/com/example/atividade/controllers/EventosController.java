@@ -10,14 +10,20 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import com.example.atividade.models.Evento;
 import com.example.atividade.repositories.EventoRepository;
+import com.example.atividade.repositories.ConvidadoRepository;
 
 @Controller
 public class EventosController {
 
     private final EventoRepository eventoRepository;
 
-    public EventosController(EventoRepository eventoRepository) {
+    private final ConvidadoRepository convidadoRepository;
+
+    public EventosController(EventoRepository eventoRepository,
+                              ConvidadoRepository convidadoRepository) {
+
         this.eventoRepository = eventoRepository;
+        this.convidadoRepository = convidadoRepository;
     }
 
     @GetMapping("/eventos/novo")
@@ -50,7 +56,14 @@ public class EventosController {
             return "redirect:/eventos";
         }
 
-        model.addAttribute("evento", evento.get());
+        Evento eventoEncontrado = evento.get();
+
+        model.addAttribute("evento", eventoEncontrado);
+
+        model.addAttribute(
+            "convidados",
+            convidadoRepository.findByEvento(eventoEncontrado)
+        );
 
         return "eventos/detalhes";
     }
