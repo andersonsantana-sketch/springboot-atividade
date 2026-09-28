@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<body>
+
+    <nav th:fragment="menu">
+        <div class="nav-wrapper">
+            <div class="container">
+
+                <a href="#" class="brand-logo">Eventos</a>
+
+                <ul class="right hide-on-med-and-down">
+                    <li>
+                        <a th:href="@{/eventos}">Lista de Eventos</a>
+                    </li>
+
+                    <li>
+                        <a th:href="@{/eventos/novo}">Novo Evento</a>
+                    </li>
+                </ul>
+
+            </div>
+        </div>
+    </nav>
+
+</body>
+</html>

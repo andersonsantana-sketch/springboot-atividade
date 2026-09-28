@@ -1,0 +1,107 @@
+html
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Cadastrar Evento</title>
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+</head>
+
+<body>
+
+    <div th:replace="~{menu :: menu}"></div>
+
+    <div class="container">
+
+        <h3 th:text="${evento.id == null ? 'Cadastrar Evento' : 'Editar Evento'}">
+            Cadastrar Evento
+        </h3>
+
+        <form th:object="${evento}"
+              action="/eventos/salvar"
+              method="post">
+
+            <input type="hidden"
+                   th:field="*{id}">
+
+            <div class="input-field">
+
+                <input type="text"
+                       id="nome"
+                       th:field="*{nome}">
+
+                <label for="nome">Nome</label>
+
+                <span class="red-text"
+                      th:if="${#fields.hasErrors('nome')}"
+                      th:errors="*{nome}">
+                </span>
+
+            </div>
+
+            <div class="input-field">
+
+                <input type="text"
+                       id="local"
+                       th:field="*{local}">
+
+                <label for="local">Local</label>
+
+                <span class="red-text"
+                      th:if="${#fields.hasErrors('local')}"
+                      th:errors="*{local}">
+                </span>
+
+            </div>
+
+            <div class="input-field">
+
+                <input type="text"
+                       id="data"
+                       th:field="*{data}">
+
+                <label for="data">Data</label>
+
+                <span class="red-text"
+                      th:if="${#fields.hasErrors('data')}"
+                      th:errors="*{data}">
+                </span>
+
+            </div>
+
+            <div class="input-field">
+
+                <input type="text"
+                       id="horario"
+                       th:field="*{horario}">
+
+                <label for="horario">Horário</label>
+
+                <span class="red-text"
+                      th:if="${#fields.hasErrors('horario')}"
+                      th:errors="*{horario}">
+                </span>
+
+            </div>
+
+            <button class="btn waves-effect waves-light"
+                    type="submit">
+                Salvar
+            </button>
+
+            <button class="btn waves-effect waves-light"
+                    type="reset">
+                Limpar
+            </button>
+
+        </form>
+
+    </div>
+
+</body>
+
+</html>
+
